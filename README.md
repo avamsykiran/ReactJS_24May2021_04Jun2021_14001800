@@ -245,13 +245,76 @@ Pre-Requites
                         the screen has to update accordingly where as the VDOM modification
                         will not trigger any screnn changes.
 
-
-                        Once VDOM is settled, react comapres 
+                        Once VDOM is settled, react compares 
                         VDOM with DOM and makes only the applicable
-                        chages to DOM so that the en tire dom need not be rewritten
-                        has making th echange sot the screen faster.
+                        changes to DOM so that the entire dom need not be rewritten
+                        thus making the changes to the screen faster.
+
+        ReactJS Components
+        ------------------------------------------------------------------------------------
+
+            1. Class Components
+
+                        class Header extends React.Component{
+                            constructor(props){
+                                super(props)
+                                //any component state initilization must happen here
+                            }
+
+                            //event handling methods
+                            //react component life cycle methods
+
+                            render(){
+                                return (
+                                    <header>
+                                        <h2>My First React App</h2>
+                                    </header>
+                                );
+                            }
+                        }
+
+            2. Functional Components
+
+                        any javascript function that accepts a props parameter and
+                        returns a JSX element is also treated as a Component
+
+                        cosnt Footer = (props) => (
+                            <footer>
+                                <h6>All rights reserved</h6>
+                            </footer>
+                        );
+
+            3. High Order Components
+
+                        any javascript function, that accepts  a component as parameter
+                        and returns a component.
+
+        First ReactJS Applciation
+        ------------------------------------------------------------------------------------
+
+            Create # Method1
+            ---------------------------------
+                1. create a project-folder 
+                2. inside that folder
+                    a) npm init -y              the project is innitilized
+                    b) install third party libraries like
+                                react
+                                react-dom
+                                react-scripts
+                                jest
+                                ........etc
+                            using 'npm install' command like
+                             npm install --save react react-dom react-scripts jest
+                3. Create the project structure .
 
             
+            Create # Method2
+            -----------------------------------
+
+                npx create-react-app app-name
+
+        
+
 
 
 
