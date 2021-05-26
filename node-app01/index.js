@@ -1,4 +1,5 @@
 import arrayDemo from './arrays.js';
+import method1 from './closure.js';
 import {greet, greetAll, greetUser, greetUserAsPerTime} from './greetService.js';
 import {greet1, greetAll1, greetUser1, greetUserAsPerTime1} from './greetService1.js';
 import objDemo from './objects.js';
@@ -21,3 +22,10 @@ greetAll1(["Vamsy","Srinu","Indhikaa Valli","Sagar","Suseela"]);
 
 arrayDemo();
 objDemo();
+
+console.log("---------CLOSURE--------------------------")
+let functionReturnedByClosure = method1(); 
+console.log(functionReturnedByClosure())
+console.log(functionReturnedByClosure())
+console.log(functionReturnedByClosure())
+console.log(functionReturnedByClosure())
