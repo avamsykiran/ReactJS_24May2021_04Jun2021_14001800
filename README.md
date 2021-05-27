@@ -253,6 +253,8 @@ Pre-Requites
         ReactJS Components
         ------------------------------------------------------------------------------------
 
+            Each component serves as a new HTML Element.
+            
             1. Class Components
 
                         class Header extends React.Component{
@@ -312,11 +314,37 @@ Pre-Requites
             -----------------------------------
 
                 npx create-react-app app-name
-
         
+        Component's state and props
+        ------------------------------------------------------------------------------------
+
+            state       is the collection of data assosiated with a component.
+                        state can be modified only through a method called 'setState'
+                        as per the on-way binding strategy, any changes to the state will
+                            trigger render method, which result in the page content updation.
+
+            props       is short for Properties
+                        the attributes of a tag are passed as props to its respective Component.
+                         
+
+        Integrating Bootstrap With React
+        -----------------------------------------------------------------------------------
+
+            method#1
+                        npm install --save bootstrap
+
+                        in index.js
+                        -------------------------------------
+                        import 'bootstrap/dist/css/boostrap.min.css'
 
 
+            method#2
+                        public/index.html
+                        ----------------------------------------------
 
+                            include the bootstrap CDN
+
+                            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous"/>
 
 
 
