@@ -1,4 +1,6 @@
 import { Component, Fragment } from 'react'
+import AddTaskView from './AddTaskView';
+import TaskView from './TaskView';
 
 class TaskList extends Component {
     constructor(props) {
@@ -16,6 +18,12 @@ class TaskList extends Component {
         }
     }
 
+    addTask = (task) => {
+        this.setState({
+            tasks:[...this.state.tasks,task],
+            tasksNotDone:(this.state.tasksNotDone+1)});
+    }
+
     render() {
 
         let { tasks, tasksDone, tasksNotDone } = this.state;
@@ -24,10 +32,18 @@ class TaskList extends Component {
             <Fragment>
                 <h3>Tasks List</h3>
 
-                <div>
+                <div className="p-2 m-2">
                     <span className="badge badge-primary p-2 mr-2">Complete: <strong>{tasksDone}</strong></span>
                     <span className="badge badge-danger p-2 mr-2">InComplete: <strong>{tasksNotDone}</strong></span>
                     <span className="badge badge-secondary p-2 mr-2">Total: <strong>{tasks.length}</strong></span>
+                </div>
+
+                <AddTaskView className="p-2 m-2 col-6" addTask={this.addTask}/>
+
+                <div className="p-2 m-2 col-6">
+                    {tasks.map(task => (
+                       <TaskView key={task.taskId} task={task} />
+                    ))}
                 </div>
             </Fragment>
         );

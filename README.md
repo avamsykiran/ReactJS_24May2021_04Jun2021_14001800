@@ -327,15 +327,16 @@ Pre-Requites
                         the attributes of a tag are passed as props to its respective Component.
                          
 
-        Integrating Bootstrap With React
+        Integrating Bootstrap and font-awesome With React
         -----------------------------------------------------------------------------------
 
             method#1
-                        npm install --save bootstrap
+                        npm install --save bootstrap font-awesome
 
                         in index.js
                         -------------------------------------
                         import 'bootstrap/dist/css/boostrap.min.css'
+                        import 'font-awesome/dist/font-awesome.min.css'
 
 
             method#2
@@ -346,11 +347,39 @@ Pre-Requites
 
                             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous"/>
 
+                            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css" integrity="sha384-wESLQ85D6gbsF459vf1CiZ2+rr+CsxRY0RpiF1tLlQpDnAgg6rwdsUF1+Ics2bni" crossorigin="anonymous">
 
+        ReactJs Forms
+        -----------------------------------------------------------------------------------
 
+            Managed Component
 
+                The form input element is directly 
+                bound to the state of the component.
+
+                Writing a form needs a lot of event handling,
+                but is safe and faster.
+
+            UnManaged Component                 (MOSTLY NOT RECOMMENDED)
+
+                The form input element is mapped to
+                something called a 'ref'
+
+                Writing a form is eaiser , but bvecause we have
+                create on ref for each form input, it becomes costlier on
+                memory and performence.
         
+        Event Bubbling
+        ------------------------------------
 
+            The event that occured in child
+            can be handled by the parent.
+
+            the parent must create a function (say f1)
+            and should share it with the child through attriubtes.
+
+            the child component can receive that function in props like props.f1()
+            and call it when the event occures.
 
                                    
 
