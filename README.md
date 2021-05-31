@@ -347,7 +347,8 @@ Pre-Requites
 
                             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous"/>
 
-                            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css" integrity="sha384-wESLQ85D6gbsF459vf1CiZ2+rr+CsxRY0RpiF1tLlQpDnAgg6rwdsUF1+Ics2bni" crossorigin="anonymous">
+                            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
         ReactJs Forms
         -----------------------------------------------------------------------------------
@@ -381,7 +382,82 @@ Pre-Requites
             the child component can receive that function in props like props.f1()
             and call it when the event occures.
 
-                                   
+        React Component Life Cycle Methods
+        ------------------------------------------------------------------------
+
+            constructor()               //compoennt state initialization
+                ↓
+            render()                    //do not call setState here..
+                ↓
+            componentDidMount()         //means that the component loading is complete
+                |                       // equivalent to onload evnet
+                |                       // used to do the rest api calls.
+                |
+                \ When ever the state gets updated/chganed \
+                            |
+                            ↓
+                        render()            //do not call setState here..
+                            ↓
+                    componentDidUpdate()    //anythign to be executed
+                                            //after the component is rendered,
+                                            ////do not call setState here..
+
+                 \ When ever an error occurs at the time component creation or rendering \
+                            |
+                            ↓
+                        componentDidCatch()
+                        
+                \ Just before the component un loads \
+                            |
+                            ↓
+                        componentWillUnmount()
+        
+            React Hooks
+            -------------------------------------------------
+
+                enable the functional component
+                to have lifecycle methods and local
+                state.
+
+                1. useState
+
+                            params: initialState
+                            return: [stateValue,functionToModifytheState]
+
+
+                    let [x,setX] = useState(0);
+                    let [emp,setEmp] = useState({empId:10,name:'vamsy'});
+
+                2. useEffect
+
+                            params: a function,an array (optional)
+                            return: nonee
+
+                        the function passed is executed
+                        after the render. (equivalent to
+                        componentDidMount and componentDidUpdate).
+
+                        the optional array is a array of dependencies.
+                        this array cna contain one or more local state
+                        fields of the component. When ever
+                        the local state field supplied in this array
+                        gets modified, the function passed will
+                        bve executed.
+
+                        if no array is passed, the fucntion executes
+                        after every render. 
+
+                        if an empty array is passed the function executes only once
+                        after the first render.
+
+
+
+
+
+
+
+
+
 
             
 

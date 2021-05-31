@@ -5,6 +5,7 @@ import TaskView from './TaskView';
 class TaskList extends Component {
     constructor(props) {
         super(props)
+        console.log("Constructor called")
         this.state = {
             tasks: [
                 { taskId: 1, taskName: "Create Product BackLog", isDone: true },
@@ -18,14 +19,54 @@ class TaskList extends Component {
         }
     }
 
-    addTask = (task) => {
-        this.setState({
-            tasks:[...this.state.tasks,task],
-            tasksNotDone:(this.state.tasksNotDone+1)});
+    updateDashboard = (tasks) => {
+        let tasksDone=0;
+        let tasksNotDone=0;
+
+        tasksDone = tasks.filter(t => t.isDone).length;
+        tasksNotDone = tasks.length - tasksDone;
+
+        return {tasksDone,tasksNotDone};
     }
 
-    render() {
+    addTask = (task) => {
+        let tasks = [...this.state.tasks,task];
+        let {tasksDone,tasksNotDone} = this.updateDashboard(tasks);
+        this.setState({tasks,tasksDone,tasksNotDone});
+    }
 
+    deleteTask = (taskId) =>{
+        let tasks = this.state.tasks.filter(t => t.taskId!=taskId);
+        let {tasksDone,tasksNotDone} = this.updateDashboard(tasks);
+        this.setState({tasks,tasksDone,tasksNotDone});
+    }
+
+    toggleStatus = (taskId) => {
+        let task = this.state.tasks.find(t => t.taskId==taskId);
+        let modifiedTask = {...task,isDone:!task.isDone};
+        let tasks = this.state.tasks.map(t => t.taskId!=taskId?t:modifiedTask);
+        let {tasksDone,tasksNotDone} = this.updateDashboard(tasks);
+        this.setState({tasks,tasksDone,tasksNotDone});
+    }
+
+    componentDidMount(){
+        console.log("componentDidMount method called")
+    }
+
+    componentDidUpdate(){
+        console.log("componentDidUpdate method called")
+    }
+
+    componentDidCatch(){
+        console.log("componentDidCatch method called")
+    }
+
+    componentWillUnmount(){
+        console.log("componentWillUnmount method called")
+    }
+    
+    render() {
+        console.log("Render method called")
         let { tasks, tasksDone, tasksNotDone } = this.state;
 
         return (
@@ -38,11 +79,19 @@ class TaskList extends Component {
                     <span className="badge badge-secondary p-2 mr-2">Total: <strong>{tasks.length}</strong></span>
                 </div>
 
-                <AddTaskView className="p-2 m-2 col-6" addTask={this.addTask}/>
+                <AddTaskView 
+                    className="p-2 m-2 col-6" 
+                    addTask={this.addTask}
+                />
 
                 <div className="p-2 m-2 col-6">
                     {tasks.map(task => (
-                       <TaskView key={task.taskId} task={task} />
+                       <TaskView 
+                            key={task.taskId} 
+                            task={task} 
+                            deleteTask={this.deleteTask}
+                            toggleStatus={this.toggleStatus}
+                        />
                     ))}
                 </div>
             </Fragment>
