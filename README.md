@@ -431,7 +431,7 @@ Pre-Requites
                 2. useEffect
 
                             params: a function,an array (optional)
-                            return: nonee
+                            return: none
 
                         the function passed is executed
                         after the render. (equivalent to
@@ -449,6 +449,95 @@ Pre-Requites
 
                         if an empty array is passed the function executes only once
                         after the first render.
+
+            Redux   -  a application level state management tool
+            -----------------------------------------------------------
+
+                is a javascript library that provides centralzed,
+                application level state mangement.
+
+                    npm install --save redux
+
+                    let store = createStore(reducer);
+
+                        store       is a repository of state.
+                                    the one that contains all state.
+                                    one app ideally has only one store.
+
+                        reducer     is a a function:
+                                            params: oldState,action
+                                            returns:    modifiedState
+
+                                    an app can have any number of reducers,
+                                    but all those reducrs must be combined into
+                                    one rootReducer.
+
+                        action      is a object with two propeties:
+                                        type            indicate what action tobe done
+                                        payload         data needed to do the action.
+
+                                        { type:'ADD_EMP', payload:{edi:1,ename:'Vamsy'}}
+
+                                        { type:'ADD_EMP', emp:{edi:1,ename:'Vamsy'}}
+
+                                        { type:'DEL_EMP', empId:102}
+        
+            ConnectAPI   -  a library to intergate Redux with React
+            -----------------------------------------------------------
+                         
+                    npm install --save react-redux
+
+                    Provider        inbuilt component to attach
+                                    a redux store wiht the App component.
+
+                                    <Provider store={myStore}>
+                                        <App />
+                                    </Provider>
+
+                    connect         is a inbuilt function
+                                        params: mapStateToProps,mapDisptachToProps
+                                        return: highOrderComponent
+                    
+                    mapStateToProps  is a function that maps requried portion
+                                        of the state with the props pf a component.
+                                                params: wholeStateInStore
+                                                return: a json object containing a portion of the
+                                                            wholeStateInStore
+
+                    dispatch         is a function that carrys an action
+                                    from a component and gives it t the reducer.
+
+                    
+                    mapDisptachToProps  is a function that maps 'dispatch calls' to
+                                            event handlers of the component.
+                                            params: disptach
+                                            return: a json object containing event ahdnling
+                                                    functions
+
+                    highOrderComponent returned by connect
+                            this is going 
+                                1. to accept any component
+                                2. add json returned by mapStateToProps into props of the component
+                                3. add json returned by mapDisptachToProps into props of the component
+                                4. return that modified component.
+
+
+                     |-----------mapStateToProps,mapDispathToProps----------------------->   component2
+                     |                  (suppy the state and dispatch)                              |
+                     |                                                                              |
+                    store  -----------mapStateToProps,mapDispathToProps------>   component1         |
+                      |                 (suppy the state and dispatch)                  |           |
+                      |                                                                 |           |
+                      |                                                                 |        dispatch(action)
+                      |                                                                 |           |
+                      |                                                         dispatch(action)    |
+                      |                                                                 |           |
+                      |<------modified state ---------- reducer <-----(action)-----------           |
+                                                            | <--------(action)----------------------
+
+
+
+
 
 
 
