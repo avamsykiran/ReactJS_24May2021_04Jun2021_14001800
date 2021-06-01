@@ -1,4 +1,6 @@
 import {useState} from 'react';
+import {connect} from 'react-redux';
+import {createToggleStatusAction,createCancelEditAction,createSaveTaskAction} from '../actions/taskActions';
 
 const EditTaskView = ({ task, toggleStatus, saveTask, cancelEditTask }) => {
 
@@ -36,5 +38,14 @@ const EditTaskView = ({ task, toggleStatus, saveTask, cancelEditTask }) => {
     );
 }
 
+const mapStateToProps = null;
 
-export default EditTaskView;
+const mapDispatchToProps = (dispatch) => ({
+    toggleStatus: taskId => dispatch(createToggleStatusAction(taskId)),
+    saveTask: task => dispatch(createSaveTaskAction(task)), 
+    cancelEditTask: taskId => dispatch(createCancelEditAction(taskId))
+});
+
+const connectToStore = connect(mapStateToProps,mapDispatchToProps);
+
+export default connectToStore(EditTaskView);

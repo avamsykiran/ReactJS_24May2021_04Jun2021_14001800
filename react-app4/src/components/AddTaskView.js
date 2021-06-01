@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { connect } from 'react-redux';
+import { createAddTaskAction } from '../actions/taskActions'
 
 const AddTaskView = ({ addTask }) => {
 
@@ -15,7 +17,7 @@ const AddTaskView = ({ addTask }) => {
     }
 
     return (
-        <form className="form-inline" onSubmit={handleFormSubmit}>
+        <form className="form-inline p-2 m-2" onSubmit={handleFormSubmit}>
             <input type="number" className="form-control mr-1" value={taskId}
                 placeholder="Task Id" onChange={e => setTaskId(parseInt(e.target.value))} />
             <input type="text" className="form-control mr-1" value={taskName}
@@ -26,4 +28,12 @@ const AddTaskView = ({ addTask }) => {
 
 };
 
-export default AddTaskView;
+const mapStateToProps = null;
+
+const mapDispatchToProps = (dispatch) => ({
+    addTask: task => dispatch(createAddTaskAction(task))
+});
+
+const connectToStore = connect(mapStateToProps,mapDispatchToProps);
+
+export default connectToStore(AddTaskView);

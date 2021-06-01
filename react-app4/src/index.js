@@ -4,9 +4,17 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import taskReducer from './reducers/taskReducer';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+
+let taskManageStore = createStore(taskReducer);
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={taskManageStore}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

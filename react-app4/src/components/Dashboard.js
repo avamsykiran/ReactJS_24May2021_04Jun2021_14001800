@@ -1,3 +1,4 @@
+import {connect} from 'react-redux';
 
 const Dashboard = ({tasksDone,tasksNotDone}) => (
     <div className="p-2 m-2">
@@ -7,4 +8,13 @@ const Dashboard = ({tasksDone,tasksNotDone}) => (
     </div>
 );
 
-export default Dashboard;
+const mapStateToProps = (state) => ({
+    tasksDone:state.tasksDone,
+    tasksNotDone:state.tasksNotDone
+});
+
+const mapDispatchToProps = null;
+
+const connectToStore = connect(mapStateToProps,mapDispatchToProps);
+
+export default connectToStore(Dashboard);

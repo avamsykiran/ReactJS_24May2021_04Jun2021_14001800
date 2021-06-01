@@ -1,3 +1,7 @@
+import {connect} from 'react-redux';
+
+import { createDelTaskAction,createToggleStatusAction,createEditTaskAction} from '../actions/taskActions';
+
 const TaskView = ({task,toggleStatus,deleteTask,editTask}) => (
     <div className="row m-1">
         <div className="col-1 text-right">{task.taskId}.</div>
@@ -25,5 +29,14 @@ const TaskView = ({task,toggleStatus,deleteTask,editTask}) => (
     </div>
 );
 
+const mapStateToProps = null;
 
-export default TaskView;
+const mapDispatchToProps = (dispatch) => ({
+    toggleStatus: taskId => dispatch(createToggleStatusAction(taskId)),
+    deleteTask: taskId => dispatch(createDelTaskAction(taskId)),
+    editTask: taskId => dispatch(createEditTaskAction(taskId))
+});
+
+const connectToStore = connect(mapStateToProps,mapDispatchToProps);
+
+export default connectToStore(TaskView);
