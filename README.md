@@ -536,11 +536,101 @@ Pre-Requites
                                                             | <--------(action)----------------------
 
 
+        React Routing
+        ------------------------------------------------------------------------
+
+                npm install --save react-router react-router-dom
+
+                    react-router-dom
+
+                            <Link to="targetPath"> Link Text </Link>
+
+                            <BrowserRouter>
+                                <Component1 />
+                                <Component2 />  //will appear as common page layout
+
+                                <Route path="/home" component="C4" />
+                                <Route path="/about" component="C5" />
+                                <Route path="/contact" component="C6" />
+
+                            </BrowserRouter>
+
+                            <BrowserRouter>
+                                <Component1 />
+                                <Component2 />  //will appear as common page layout
+
+                                <Switch>
+                                    <Route path="/" exact component="C3" />
+                                    <Route path="/home" component="C4" />
+                                    <Route path="/about" component="C5" />
+                                    <Route path="/contact" component="C6" />
+                                </Switch>
+                            </BrowserRouter>
+                            
+                            <Redirect to="targetUrl" />
+
+        Consuming Rest API in React - AXIOS
+        ------------------------------------------------------------------------
+
+                npm install --save axios
+
+                is a library used to send http request to a http url.
+
+                axios
+                        .get(url)               returns Promise
+                        .put(url,reqBody)       returns Promise
+                        .post(url,reqBody)      returns Promise
+                        .delete(url)            returns Promise
+
+
+        redux-thunk  - Integrate AXIOS to Redux
+        ----------------------------------------------------------------------------
+
+            npm install --save redux-thunk
+            
+            thunk   means a function that returns another function.
+
+            action      can be an object
+                        can be a function
+
+                        if the action is an object, it is directed to the reducer
+                        if the action is a function, that function is executed and it is
+                                    the resposnibility of that function to send 
+                                    action objects to the reducer.
+
+               
+                    store  -----------mapStateToProps,mapDispathToProps------>   component1         
+                      |                 (suppy the state and dispatch)                  |          
+                      |                                                                 |      
+                      |                                                                 |    
+                      |                                                                 |          
+                      |                                                         dispatch(action)    
+                      |                                                                 |          
+                      |                                                                 |
+                      |                                                         --------------------
+                      |                                          (action object)|                  |(action fucntion)
+                      |                                                         |                  |
+                      |<------modified state ---------- reducer <-----(action)--|                  |
+                                                              | <---(action indicating WAIT)-------|
+                                                              |                           -----------------------
+                                                              |                           | that function       |
+                                                              |                           | is executed         |
+                                                              |                           | here,the AXIOS call |
+                                                              |                           | must happen         |
+                                                              |                            -----------------------  
+                                                              |                                     |
+                                                              |                                 -----------
+                                                              | <---(action indicting success)--|          |
+                                                              |                                            |
+                                                              | <---(action indicating failure)------------|
 
 
 
 
 
+
+
+                     
 
 
 
