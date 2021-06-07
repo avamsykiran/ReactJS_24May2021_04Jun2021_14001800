@@ -44,8 +44,17 @@ public class TaskRestController {
 	}
 	
 	@PostMapping
+	public ResponseEntity<Task> create(@RequestBody Task task) throws Exception{
+		if(taskRepo.existsById(task.getTaskId()))
+			throw new Exception("Task already found");
+		task = taskRepo.save(task);
+		return ResponseEntity.ok(task);
+	}
+	
 	@PutMapping
-	public ResponseEntity<Task> create(@RequestBody Task task){
+	public ResponseEntity<Task> update(@RequestBody Task task) throws Exception{
+		if(!taskRepo.existsById(task.getTaskId()))
+			throw new Exception("No Such task found");
 		task = taskRepo.save(task);
 		return ResponseEntity.ok(task);
 	}

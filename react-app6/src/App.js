@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Dashboard from './components/Dashboard';
 import TaskList from './components/TaskList';
 import AddTaskView from './components/AddTaskView';
+import StatusStrip from './components/StatusStrip';
 
 const App = (props) => (
   <Router>
@@ -14,6 +15,7 @@ const App = (props) => (
         <Route path="/taskList" component={TaskList} />
       </Switch>
     </main>
+    <StatusStrip />
   </Router>
 );
 
