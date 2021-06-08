@@ -38,10 +38,10 @@ export const loginThunk =(user) => (dispatch) => {
 
 const getUserInfo = (email,dispatch,token) => {
     dispatch(createWaitAction());
-  
-    axios.get(`${userInfoUrl}/${email}`,{headers:{"Authorization":`Bearer ${token}`}}).then(
+   
+    axios.get(`${userInfoUrl}/${email}`,{headers:{Authorization:`Bearer ${token}`}}).then(
         resp => {
-            sessionStorage.setItem("user",resp.data);
+            sessionStorage.setItem("user",JSON.stringify(resp.data));
             dispatch(createLoginAction(resp.data))
         },
         err =>  handleError(err,dispatch,err.message || "Sorry unable to fetech user info")

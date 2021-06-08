@@ -21,7 +21,7 @@ const getDelTxnUrl = (txnId) => {
 
 const handleError =(err,dispatch,errMsg) => {
     console.log(err);
-    dispatch(createErrAction(errMsg));
+    dispatch(createErrorAction(errMsg));
 }
 
 export const getAllTxnsThunk = () => (dispatch) => {

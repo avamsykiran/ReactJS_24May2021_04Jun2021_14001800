@@ -15,7 +15,7 @@ const Header = ({ isLogged,userName,logout }) => (
                     <Link to="/newTxn" className="nav-link">New Transaction</Link>
                 </li>
                 <li className="nav-item">
-                    <button class="btn btn-sm btn-secondary" onClick={e => logout()}>
+                    <button className="nav-link btn btn-info btn-sm" onClick={e => logout()}>
                         {userName} | Logout
                     </button>
                 </li>
