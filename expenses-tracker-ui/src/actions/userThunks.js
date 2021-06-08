@@ -3,6 +3,7 @@ import { createErrAction, createLoginAction, createRegisterDoneAction, createWai
 
 const loginApiUrl = "http://localhost:9999/login";
 const registerApiUrl = "http://localhost:9999/register";
+const userInfoUrl = "http://localhost:9999/users";
 
 const handleError =(err,dispatch,errMsg) => {
     console.log(err);
@@ -28,10 +29,21 @@ export const loginThunk =(user) => (dispatch) => {
         res => {
             let token = res.data.token;
             sessionStorage.setItem("token",token);
-            sessionStorage.setItem("user",JSON.stringify(user));
-            dispatch(createLoginAction(user));
+            getUserInfo(user.emailId,dispatch,token);
         },
-        err => handleError(err,dispatch,err.message || "Invalid Credits");
+        err => handleError(err,dispatch,err.message || "Invalid Credits")
     );
 
+}
+
+const getUserInfo = (email,dispatch,token) => {
+    dispatch(createWaitAction());
+  
+    axios.get(`${userInfoUrl}/${email}`,{headers:{"Authorization":`Bearer ${token}`}}).then(
+        resp => {
+            sessionStorage.setItem("user",resp.data);
+            dispatch(createLoginAction(resp.data))
+        },
+        err =>  handleError(err,dispatch,err.message || "Sorry unable to fetech user info")
+    )
 }

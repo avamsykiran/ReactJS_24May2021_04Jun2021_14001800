@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
+import { createLogoutAction} from '../actions/userActions';
 
-const Header = ({ isLogged }) => (
+const Header = ({ isLogged,userName,logout }) => (
     <header className="navbar nav-dark bg-dark navbar-expand-sm">
         <Link to="/" className="navbar-brand">ExpensesTracker</Link>
 
@@ -14,7 +15,9 @@ const Header = ({ isLogged }) => (
                     <Link to="/newTxn" className="nav-link">New Transaction</Link>
                 </li>
                 <li className="nav-item">
-                    <Link to="/logout" className="nav-link">Logout</Link>
+                    <button class="btn btn-sm btn-secondary" onClick={e => logout()}>
+                        {userName} | Logout
+                    </button>
                 </li>
             </ul>
         }
@@ -34,9 +37,12 @@ const Header = ({ isLogged }) => (
 );
 
 const mapStateToProps = (state) => ({
-    isLogged: state.users.currentUser != null
+    isLogged: state.users.currentUser != null,
+    userName: state.users.currentUser?state.users.currentUser.userName:null
 });
 
-const mapDispatchToProps = null;
+const mapDispatchToProps = (dispatch) => ({
+   logout: () => dispatch(createLogoutAction())
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
